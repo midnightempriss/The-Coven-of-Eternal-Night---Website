@@ -1,0 +1,738 @@
+/* Game Page Styles */
+.game-card {
+    text-align: center;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden; /* Fix animation overflow */
+}
+
+.game-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 20px var(--neon-lavender));
+    transition: all 0.4s ease;
+}
+
+.game-card:hover .game-icon {
+    transform: translateY(-10px) scale(1.1);
+    filter: drop-shadow(0 5px 30px var(--neon-lavender));
+}
+
+.game-card h3 {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--neon-lavender);
+}
+
+.game-card p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Clickable game card link styling */
+.game-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+}
+
+.game-card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Adjust goth-button when used as span inside clickable card */
+.game-card-link .goth-button {
+    display: inline-block;
+    text-decoration: none;
+    pointer-events: none; /* Prevent double-click since parent handles the click */
+}
+
+/* Team Page Styles */
+.team-photo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--accent-purple);
+    box-shadow: 0 0 30px var(--accent-purple);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.team-photo::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(var(--neon-lavender), var(--accent-purple), var(--neon-lavender));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: rotateBorder 3s linear infinite paused;
+}
+
+.team-card:hover .team-photo::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.team-card:hover .team-photo {
+    transform: scale(1.05);
+    border-color: transparent;
+}
+
+@keyframes rotateBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.team-card h3 {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 1.8rem;
+    color: var(--neon-lavender);
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    line-height: 1.6;
+}
+
+/* Team Card Footer with Button */
+.team-card-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Ensure team card has relative positioning for absolute button positioning */
+.team-card {
+    position: relative;
+    padding-bottom: 80px; /* Add space for the button */
+}
+
+/* Streamer Page Styles */
+.streamer-preview {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1rem;
+    background: var(--secondary-dark);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.streamer-preview iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.placeholder-stream {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--shadow-purple) 0%, var(--secondary-dark) 100%);
+    color: var(--text-dim);
+}
+
+.streamer-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.live-indicator {
+    color: #ff4444;
+    animation: pulse 2s infinite;
+}
+
+.offline-indicator {
+    color: var(--text-dim);
+}
+
+/* Streamer Card Specific Styles */
+.streamer-card {
+    /* Allow button hover effects to show properly by removing overflow hidden */
+    overflow: visible;
+    /* Add padding to contain the button effects within the card visual bounds */
+    padding: 2rem 2rem 3rem 2rem;
+}
+
+/* Ensure the goth-button in streamer cards has proper spacing for hover effects */
+.streamer-card .goth-button {
+    margin: 1rem 0;
+    display: inline-block;
+}
+
+/* Form Styles */
+.gothic-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-section {
+    background: rgba(26, 13, 38, 0.8);
+    border: 2px solid var(--accent-purple);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-section h2 {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 2rem;
+    color: var(--neon-lavender);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(10, 0, 20, 0.6);
+    border: 2px solid var(--shadow-purple);
+    color: var(--text-light);
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--neon-lavender);
+    box-shadow: 
+        0 0 0 3px rgba(199, 125, 255, 0.1),
+        0 0 20px rgba(127, 57, 251, 0.3);
+    background: rgba(20, 0, 40, 0.7);
+    transform: translateY(-2px);
+}
+
+/* Elegant checkbox animation */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label:hover {
+    color: var(--neon-lavender);
+    transform: translateX(5px);
+}
+
+.checkbox-label input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-purple);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background: var(--accent-purple);
+    border-color: var(--neon-lavender);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+}
+
+.submit-button {
+    display: block;
+    margin: 2rem auto 0;
+    font-size: 1.3rem;
+    padding: 1rem 3rem;
+}
+
+.form-success {
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Chat Page Styles */
+.chat-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.discord-section {
+    text-align: center;
+}
+
+.discord-widget {
+    margin: 2rem 0;
+    border: 2px solid var(--accent-purple);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 30px var(--accent-purple);
+}
+
+.discord-button {
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+}
+
+.discord-button span {
+    margin-right: 0.5rem;
+}
+
+.forum-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.forum-category {
+    text-align: center;
+    cursor: pointer;
+}
+
+.forum-category h3 {
+    color: var(--neon-lavender);
+    margin-bottom: 0.5rem;
+}
+
+/* Fade-in animation for cards */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ripple effect for buttons */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Member Profile Page Styles */
+.member-profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.back-nav {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neon-lavender);
+    text-decoration: none;
+    font-family: 'IM Fell English', serif;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.back-link:hover {
+    background: rgba(127, 57, 251, 0.1);
+    transform: translateX(-5px);
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover .back-arrow {
+    transform: translateX(-3px);
+}
+
+/* Member Header */
+.member-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(30, 15, 50, 0.8) 0%, rgba(45, 25, 75, 0.6) 100%);
+    border-radius: 12px;
+    border: 1px solid var(--accent-purple);
+    position: relative;
+    overflow: hidden;
+}
+
+.member-header::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, var(--neon-lavender), var(--accent-purple));
+    z-index: -1;
+    opacity: 0.3;
+    border-radius: 12px;
+    filter: blur(8px);
+}
+
+.member-avatar {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.member-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-purple);
+    box-shadow: 0 0 30px var(--accent-purple);
+    transition: all 0.4s ease;
+}
+
+.member-avatar img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--neon-lavender);
+}
+
+.member-title {
+    flex: 1;
+}
+
+.member-name {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 3rem;
+    color: var(--neon-lavender);
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 20px var(--accent-purple);
+}
+
+.member-role {
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin: 0 0 1rem 0;
+}
+
+.member-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-badge.online {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.status-badge.offline {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    color: white;
+}
+
+/* Profile Content Grid */
+.profile-content {
+    margin-top: 2rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.profile-section {
+    padding: 2rem;
+}
+
+.profile-section.full-width {
+    grid-column: 1 / -1;
+}
+
+.section-title {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 1.8rem;
+    color: var(--neon-lavender);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+}
+
+/* About Section */
+.about-content p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+/* Gaming Profile */
+.game-stats {
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(127, 57, 251, 0.2);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--text-dim);
+    font-weight: bold;
+}
+
+.stat-value {
+    color: var(--neon-lavender);
+    font-family: 'IM Fell English', serif;
+}
+
+.favorite-games h3 {
+    color: var(--accent-purple);
+    margin-bottom: 1rem;
+    font-family: 'UnifrakturCook', cursive;
+}
+
+.games-list {
+    list-style: none;
+    padding: 0;
+}
+
+.games-list li {
+    padding: 0.5rem 0;
+    color: var(--text-light);
+    border-left: 3px solid var(--accent-purple);
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.games-list li:hover {
+    border-left-color: var(--neon-lavender);
+    background: rgba(127, 57, 251, 0.1);
+    padding-left: 1.5rem;
+}
+
+/* Achievements */
+.achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(127, 57, 251, 0.2);
+}
+
+.achievement-item:last-child {
+    border-bottom: none;
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 10px var(--accent-purple));
+}
+
+.achievement-text h4 {
+    color: var(--neon-lavender);
+    margin: 0 0 0.5rem 0;
+    font-family: 'IM Fell English', serif;
+}
+
+.achievement-text p {
+    color: var(--text-light);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.5;
+}
+
+.achievement-date {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Contact Section */
+.contact-methods {
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(127, 57, 251, 0.2);
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    color: var(--text-dim);
+    font-weight: bold;
+}
+
+.contact-value {
+    color: var(--neon-lavender);
+    font-family: 'IM Fell English', serif;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-buttons .goth-button {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Guild Contributions */
+.contribution-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(30, 15, 50, 0.4);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-purple);
+    transition: all 0.3s ease;
+}
+
+.contribution-item:hover {
+    border-left-color: var(--neon-lavender);
+    background: rgba(30, 15, 50, 0.6);
+    transform: translateX(5px);
+}
+
+.contribution-item h4 {
+    color: var(--neon-lavender);
+    margin: 0 0 1rem 0;
+    font-family: 'IM Fell English', serif;
+    font-size: 1.2rem;
+}
+
+.contribution-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-section {
+        padding: 1.5rem;
+    }
+    
+    .team-photo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .streamer-preview {
+        height: 150px;
+    }
+    
+    .member-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .member-name {
+        font-size: 2.5rem;
+    }
+    
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+    }
+    
+    .contact-buttons .goth-button {
+        flex: none;
+    }
+}

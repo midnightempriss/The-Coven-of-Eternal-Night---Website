@@ -1,0 +1,363 @@
+/* Base Styles and Variables */
+:root {
+    --primary-dark: #0a0014;
+    --secondary-dark: #1a0d26;
+    --accent-purple: #7f39fb;
+    --neon-lavender: #c77dff;
+    --shadow-purple: #240046;
+    --text-light: #e7c6ff;
+    --text-dim: #9d4edd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IM Fell English', serif;
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Enchanted Forest Background */
+.enchanted-forest {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(180deg, rgba(10,0,20,0.8) 0%, rgba(36,0,70,0.9) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><path d="M0,600 Q300,400 600,600 T1200,600 L1200,800 L0,800 Z" fill="%23240046" filter="url(%23glow)"/><circle cx="200" cy="200" r="80" fill="%237f39fb" opacity="0.2" filter="url(%23glow)"><animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/></circle><circle cx="900" cy="300" r="60" fill="%23c77dff" opacity="0.3" filter="url(%23glow)"><animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/></circle></svg>');
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    animation: forestPulse 20s ease-in-out infinite;
+}
+
+@keyframes forestPulse {
+    0%, 100% { filter: brightness(0.8) hue-rotate(0deg); }
+    50% { filter: brightness(1) hue-rotate(10deg); }
+}
+
+/* Particle Canvas */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Navigation Styles */
+.main-nav {
+    background: rgba(26, 13, 38, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--accent-purple);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(127, 57, 251, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo h1 {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 2.5rem;
+    color: var(--neon-lavender);
+    text-shadow: 0 0 20px var(--accent-purple);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--neon-lavender) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 20px var(--neon-lavender);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+    opacity: 0.2;
+    transform: scale(1.2);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background: linear-gradient(90deg, transparent, var(--neon-lavender), transparent);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px var(--neon-lavender);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    animation: fadeInUp 1.5s ease-out;
+    padding: 30px; /* Add padding to contain button animations */
+}
+
+.hero-title {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px var(--accent-purple);
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+}
+
+/* Gothic Buttons */
+.goth-button {
+    background: linear-gradient(135deg, var(--shadow-purple) 0%, var(--accent-purple) 100%);
+    border: 1px solid var(--accent-purple);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-family: 'IM Fell English', serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+}
+
+.goth-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(199, 125, 255, 0.4), transparent);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.goth-button::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, var(--neon-lavender), var(--accent-purple));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 4px;
+    filter: blur(4px);
+}
+
+.goth-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(127, 57, 251, 0.4),
+        inset 0 0 20px rgba(199, 125, 255, 0.2);
+    border-color: var(--neon-lavender);
+}
+
+.goth-button:hover::before {
+    left: 100%;
+}
+
+.goth-button:hover::after {
+    opacity: 0.7;
+}
+
+/* Elegant Pulse Animation */
+.pulse-button {
+    animation: elegantPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    /* Add margin to contain the expanding box-shadow */
+    margin: 25px;
+    display: inline-block; /* Ensure proper containment */
+}
+
+@keyframes elegantPulse {
+    0%, 100% { 
+        box-shadow: 
+            0 0 0 0 rgba(127, 57, 251, 0.7),
+            0 4px 15px rgba(127, 57, 251, 0.3);
+    }
+    50% { 
+        box-shadow: 
+            0 0 0 10px rgba(127, 57, 251, 0),
+            0 4px 20px rgba(127, 57, 251, 0.5);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleGlow {
+    0%, 100% { text-shadow: 0 0 30px var(--accent-purple); }
+    50% { text-shadow: 0 0 50px var(--neon-lavender), 0 0 70px var(--accent-purple); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+/* Page Content Styles */
+.page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 20px var(--accent-purple);
+}
+
+/* Grid Layouts */
+.game-grid,
+.team-grid,
+.streamer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: rgba(26, 13, 38, 0.8);
+    border: 1px solid rgba(127, 57, 251, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(199, 125, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(199, 125, 255, 0.1) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-purple);
+    box-shadow: 
+        0 15px 40px rgba(127, 57, 251, 0.3),
+        inset 0 0 30px rgba(199, 125, 255, 0.1);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover::after {
+    transform: translateX(100%);
+}
